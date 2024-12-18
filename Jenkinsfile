@@ -43,20 +43,15 @@ pipeline {
                     reuseNode true
                 }
             }
-            steps {
-    sh '''
-        # List files and check node version
-            ls -la
-            node --version
+            steps{
+                sh '''
+                    ls -la
+                    node --version
+                    npm install netlify-cli -g
 
-        # Clear npm cache to avoid corrupted cache issues
-            npm cache clean --force
-
-        # Retry npm install command
-            npm install netlify-cli -g || (echo "First attempt failed, retrying..."; npm install netlify-cli -g)
-    '''
-}
-
+                    
+                ''' 
+            }
         }
     }
 
