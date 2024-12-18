@@ -47,7 +47,7 @@ pipeline {
                 sh '''
                     ls -la
                     node --version
-                    npm install netlify-cli --save --dev
+                    npm install netlify-cli@13.1.21 --save --dev
 
                     
                 ''' 
