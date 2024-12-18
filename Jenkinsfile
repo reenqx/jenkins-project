@@ -43,15 +43,24 @@ pipeline {
                     reuseNode true
                 }
             }
-            steps{
+            steps {
                 sh '''
+                    
                     ls -la
                     node --version
-                    npm install netlify-cli 
-
+            
                     
-                ''' 
+                    npm cache clean --force
+            
+                    echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
+                    echo "nameserver 8.8.4.4" | sudo tee -a /etc/resolv.conf > /dev/null
+            
+                    npm install netlify-cli || (echo "First attempt failed, retrying..."; npm install netlify-cli)
+            
+                    sudo apt-get update && sudo apt-get install -y libvips-dev
+                '''
             }
+
         }
     }
 
