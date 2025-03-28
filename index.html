@@ -2,19 +2,50 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <title>สุ่มเพลง</title>
+  <title>สุ่มเพลง - Brat Album Style</title>
   <style>
     body {
-      font-family: sans-serif;
-      margin: 20px;
+      font-family: 'Arial Black', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle, #222, #000);
+      color: #fff;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    h1 {
+      font-size: 3em;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+    }
+    button {
+      background: #ff4081;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-radius: 5px;
+    }
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px #ff4081;
     }
     #song-info {
+      margin-top: 30px;
+    }
+    audio {
       margin-top: 20px;
+      outline: none;
     }
   </style>
 </head>
 <body>
-  <h1>สุ่มเพลง</h1>
+  <h1>Brat Album</h1>
   <button id="randomSongBtn">สุ่มเพลง</button>
   <div id="song-info"></div>
 
