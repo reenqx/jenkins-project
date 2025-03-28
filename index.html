@@ -133,6 +133,7 @@
       padding: 20px;
       border-top: 1px solid #39ff14;
       max-width: 600px;
+      width: 90%;
       margin-left: auto;
       margin-right: auto;
       z-index: 2;
@@ -150,13 +151,32 @@
     audio {
       margin-top: 20px;
       outline: none;
+      width: 100%;
     }
     /* เพิ่มรูปปกเพลง */
     #song-info img {
-      width: auto;;
+      max-width: 100%;
       height: auto;
       border-radius: 10px;
       margin-bottom: 20px;
+    }
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.5em;
+        letter-spacing: 2px;
+      }
+      button {
+        width: 80%;
+        font-size: 1em;
+        padding: 8px 16px;
+      }
+      #song-info h2 {
+        font-size: 1.5em;
+      }
+      #song-info p {
+        font-size: 1em;
+      }
     }
   </style>
 </head>
