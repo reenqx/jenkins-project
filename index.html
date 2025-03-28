@@ -1,11 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>สุ่มเพลง</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+    }
+    #song-info {
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-    hhhhhhhhh
+  <h1>สุ่มเพลง</h1>
+  <button id="randomSongBtn">สุ่มเพลง</button>
+  <div id="song-info"></div>
+
+  <script>
+    document.getElementById('randomSongBtn').addEventListener('click', async () => {
+      try {
+        const res = await fetch('/.netlify/functions/random-song');
+        if (!res.ok) throw new Error('เกิดข้อผิดพลาด');
+        const song = await res.json();
+        document.getElementById('song-info').innerHTML = `
+          <h2>${song.title}</h2>
+          <p>ศิลปิน: ${song.artist}</p>
+          <audio controls src="${song.url}"></audio>
+        `;
+      } catch (error) {
+        document.getElementById('song-info').innerText = error.message;
+      }
+    });
+  </script>
 </body>
 </html>
