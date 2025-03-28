@@ -11,7 +11,7 @@ pipeline {
         agent {
             docker {
                 image 'node:18-alpine'
-                dockerArgs '-v /var/run/docker.sock:/var/run/docker.sock' // Add this line
+                args '-v /var/run/docker.sock:/var/run/docker.sock'  // แก้ไขตรงนี้
                 reuseNode true
             }
         }
@@ -26,7 +26,12 @@ pipeline {
     }
 
     stage('Test') {
-        
+        agent {
+            docker {
+                image 'node:18-alpine'
+                reuseNode true
+            }
+        }
         steps {
             echo "🛠️ Running function load test..."
             sh '''
@@ -36,7 +41,12 @@ pipeline {
     }
 
     stage('Deploy') {
-        
+        agent {
+            docker {
+                image 'node:18-alpine'
+                reuseNode true
+            }
+        }
         steps {
             echo "🚀 Deploying the project to Netlify..."
             sh '''
