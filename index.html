@@ -106,7 +106,7 @@
       clip: rect(0, 900px, 0, 0);
       animation: glitch 2s infinite linear alternate;
     }
-    /* ปรับปรุงปุ่มให้มีความกะทัดรัดและดูดี */
+    /* ปุ่มสุ่มเพลง */
     button {
       background: transparent;
       border: 3px solid #39ff14;
@@ -122,12 +122,14 @@
       position: relative;
       display: inline-block;
       width: 50%;
+      margin-bottom: 20px;
     }
     button:hover {
       transform: scale(1.1);
       background: rgba(57, 255, 20, 0.1);
       box-shadow: 0 0 20px #39ff14;
     }
+    /* คอนเทนต์เพลง */
     #song-info {
       margin-top: 40px;
       padding: 20px;
@@ -144,21 +146,26 @@
       margin-bottom: 10px;
       color: #39ff14;
     }
-    #song-info p {
-      font-size: 1.2em;
-      margin-bottom: 20px;
-    }
-    audio {
-      margin-top: 20px;
-      outline: none;
-      width: 100%;
-    }
-    /* เพิ่มรูปปกเพลง */
     #song-info img {
       max-width: 100%;
       height: auto;
       border-radius: 10px;
       margin-bottom: 20px;
+    }
+    /* ปุ่ม Listen on Spotify */
+    .spotify-btn {
+      display: inline-block;
+      background: #1db954;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .spotify-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #1db954;
     }
     /* Responsive adjustments */
     @media (max-width: 600px) {
@@ -174,9 +181,6 @@
       #song-info h2 {
         font-size: 1.5em;
       }
-      #song-info p {
-        font-size: 1em;
-      }
     }
   </style>
 </head>
@@ -191,10 +195,11 @@
         const res = await fetch('/.netlify/functions/random-song');
         if (!res.ok) throw new Error('เกิดข้อผิดพลาด');
         const song = await res.json();
+        // เปลี่ยนการแสดงผลให้ใช้ลิงก์ Spotify
         document.getElementById('song-info').innerHTML = `
           <img src="${song.cover}" alt="${song.title}">
           <h2>${song.title}</h2>
-          <audio controls src="${song.url}"></audio>
+          <a class="spotify-btn" href="${song.spotify}" target="_blank">Listen on Spotify</a>
         `;
       } catch (error) {
         document.getElementById('song-info').innerText = error.message;
