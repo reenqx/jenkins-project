@@ -12,6 +12,8 @@ pipeline {
                 docker {
                     image 'node:18-alpine'
                     reuseNode true
+                    // mount Docker socket จาก host เพื่อให้ container สามารถใช้งาน Docker daemon ได้
+                    args '-v /var/run/docker.sock:/var/run/docker.sock'
                 }
             }
             steps {
@@ -29,6 +31,7 @@ pipeline {
                 docker {
                     image 'node:18-alpine'
                     reuseNode true
+                    args '-v /var/run/docker.sock:/var/run/docker.sock'
                 }
             }
             steps {
@@ -44,6 +47,7 @@ pipeline {
                 docker {
                     image 'node:18-alpine'
                     reuseNode true
+                    args '-v /var/run/docker.sock:/var/run/docker.sock'
                 }
             }
             steps {
