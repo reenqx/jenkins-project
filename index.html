@@ -114,7 +114,7 @@
       font-size: 1.1em;
       cursor: pointer;
       transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-      border-radius: 5px;
+      border-radius: 25px;
       color: #39ff14;
       text-transform: uppercase;
       letter-spacing: 2px;
@@ -122,7 +122,6 @@
       position: relative;
       display: inline-block;
       width: 50%;
-      border-radius: 25px;
     }
     button:hover {
       transform: scale(1.1);
@@ -152,6 +151,13 @@
       margin-top: 20px;
       outline: none;
     }
+    /* เพิ่มรูปปกเพลง */
+    #song-info img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
@@ -166,8 +172,8 @@
         if (!res.ok) throw new Error('เกิดข้อผิดพลาด');
         const song = await res.json();
         document.getElementById('song-info').innerHTML = `
+          <img src="${song.cover}" alt="${song.title}">
           <h2>${song.title}</h2>
-          <p>ศิลปิน: ${song.artist}</p>
           <audio controls src="${song.url}"></audio>
         `;
       } catch (error) {
