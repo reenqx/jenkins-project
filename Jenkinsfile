@@ -7,71 +7,73 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
-            agent {
-                docker {
-                    image 'node:18-alpine'
-                    reuseNode true
-                }
-            }
-            steps {
-                echo "🔧 Checking required files..."
-                sh '''
-                    test -f index.html || (echo "❌ Missing index.html" && exit 1)
-                    test -f netlify/functions/random-song.js || (echo "❌ Missing quote function" && exit 1)
-                    echo "✅ Build check passed."
-                '''
+    stage('Build') {
+        agent {
+            docker {
+                image 'node:18-alpine'
+                reuseNode true
             }
         }
-
-        stage('Test') {
-            agent {
-                docker {
-                    image 'node:18-alpine'
-                    reuseNode true
-                }
-            }
-            steps {
-                echo "🧪 Testing quote function load..."
-                sh '''
-                    node -e "require('./netlify/functions/random-song.js'); console.log('✅ Function loaded successfully')"
-                '''
-            }
-        }
-
-        stage('Deploy') {
-            agent {
-                docker {
-                    image 'node:18-alpine'
-                    reuseNode true
-                }
-            }
-            steps {
-                echo "🚀 Deploying to Netlify..."
-                sh '''
-                    npm install netlify-cli
-                    node_modules/.bin/netlify deploy \
-                      --auth=$NETLIFY_AUTH_TOKEN \
-                      --site=$NETLIFY_SITE_ID \
-                      --dir=. \
-                      --prod
-                '''
-            }
-        }
-
-        stage('Post Deploy') {
-            steps {
-                echo "✅ Deployment complete! Your app is live."
-            }
+        steps {
+            echo "🔍 Verifying required files..."
+            sh '''
+                test -f index.html || (echo "🚨 index.html is missing!" && exit 1)
+                test -f netlify/functions/random-song.js || (echo "⚠️ The random song function is missing!" && exit 1)
+                echo "✅ All necessary files are in place!"
+            '''
         }
     }
 
-    post {
-        success {
-            echo "🎉 CI/CD pipeline finished successfully."
+    stage('Test') {
+        agent {
+            docker {
+                image 'node:18-alpine'
+                reuseNode true
+            }
         }
-        failure {
-            echo "❌ Pipeline failed. Check logs for details."
+        steps {
+            echo "🛠️ Running function load test..."
+            sh '''
+                node -e "require('./netlify/functions/random-song.js'); console.log('🎯 Function loaded successfully!')"
+            '''
         }
     }
+
+    stage('Deploy') {
+        agent {
+            docker {
+                image 'node:18-alpine'
+                reuseNode true
+            }
+        }
+        steps {
+            echo "🚀 Deploying the project to Netlify..."
+            sh '''
+                npm install netlify-cli
+                node_modules/.bin/netlify deploy \
+                  --auth=$NETLIFY_AUTH_TOKEN \
+                  --site=$NETLIFY_SITE_ID \
+                  --dir=. \
+                  --prod
+            '''
+        }
+    }
+
+    stage('Post Deploy') {
+        steps {
+            echo "🎉 Deployment is complete! Your website is now live."
+        }
+    }
+}
+
+post {
+    success {
+        echo "✅ CI/CD pipeline executed successfully! 🎊"
+    }
+    failure {
+        echo "❌ An error occurred during the pipeline execution. Please check the logs!"
+    }
+}
+
+        
 }
