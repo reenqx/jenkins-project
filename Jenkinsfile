@@ -2,71 +2,85 @@ pipeline {
     agent any
 
     environment {
-        // กำหนดค่า environment variables สำหรับการใช้งานกับ Netlify
-        NETLIFY_SITE_ID = '43209e1b-2e89-4b47-91a5-92dd21a3c8e7' // ตัวระบุของ Netlify site
-        NETLIFY_AUTH_TOKEN = credentials('token') // ใช้ token จาก Jenkins credentials
+        NETLIFY_SITE_ID = '43209e1b-2e89-4b47-91a5-92dd21a3c8e7'  // Replace with your Netlify Site ID
+        NETLIFY_AUTH_TOKEN = credentials('token')  // Replace with your Jenkins credentials ID
     }
 
     stages {
-        // ขั้นตอนการ Build
-        stage('Build') {\
+        stage('Checkout') {
+            steps {
+                // Checkout the source code from your repository
+                checkout scm
+            }
+        }
+
+        stage('Build') {
             agent {
-        docker {
-          image 'node:18-alpine'
-          reuseNode true
-        }
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
             steps {
-                echo "🔍 Checking required files..."
-                sh 'npm cache clean --force'  // ล้าง cache ก่อนทำการติดตั้งใหม่
-                sh 'npm install'  // ติดตั้ง dependencies ทั้งหมด
-                sh 'npm -v'  // ตรวจสอบว่า npm ทำงานได้หรือไม่
-                // ตรวจสอบว่าไฟล์ index.html และ app.js อยู่ในตำแหน่งที่ถูกต้อง
+                echo "🔧 Checking required files..."
                 sh '''
-                    test -f public/index.html || (echo "🚨 index.html is missing!" && exit 1)
-                    test -f netlify/functions/app.js || (echo "⚠️ app.js is missing!" && exit 1)
-                    echo "✅ All necessary files are available!"
+                    test -f index.html || (echo "❌ Missing index.html" && exit 1)
+                    test -f netlify/functions/app.js || (echo "❌ Missing script function" && exit 1)
+                    echo "✅ Build check passed."
                 '''
             }
         }
 
-        // ขั้นตอนการทดสอบ
         stage('Test') {
+            agent {
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
             steps {
-                echo "🛠️ Running application test..."
-                // ทดสอบการโหลด app.js และให้ข้อมูลว่าโหลดสำเร็จ
+                echo "Hello page load..."
                 sh '''
-                    node -e "require('./netlify/functions/app.js'); console.log('🎯 app.js loaded successfully!')"
+                    npm install uuid
+                    node -e "require('./netlify/functions/app.js'); console.log('✅ Script function loaded successfully')"
                 '''
             }
         }
 
-        // ขั้นตอนการ Deploy
         stage('Deploy') {
+            agent {
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
             steps {
-                echo "🚀 Deploying the project to Netlify..."
-                // ติดตั้ง netlify-cli และทำการ deploy ไปยัง Netlify
+                echo "🚀 Deploying to Netlify..."
+                // Install Netlify CLI and deploy the project
                 sh '''
                     npm install netlify-cli
-                    node_modules/.bin/netlify deploy --auth=$NETLIFY_AUTH_TOKEN --site=$NETLIFY_SITE_ID --dir=. --prod
+                    npx netlify deploy \
+                      --auth=$NETLIFY_AUTH_TOKEN \
+                      --site=$NETLIFY_SITE_ID \
+                      --dir=public \
+                      --prod
                 '''
             }
         }
 
-        // ขั้นตอนหลังจากการ Deploy
         stage('Post Deploy') {
             steps {
-                echo "🎉 Deployment complete! Your website is now live."
+                echo "✅ Deployment complete! Hello Page."
             }
         }
     }
 
-    // การกำหนดการดำเนินการหลังจาก Pipeline เสร็จสิ้น
     post {
         success {
-            echo "✅ CI/CD pipeline executed successfully! 🎊"
+            echo "🎉 CI/CD pipeline finished successfully."
         }
         failure {
-            echo "❌ Pipeline failed. Please check the logs!"
+            echo "❌ Pipeline failed. Check logs for details."
         }
     }
 }
