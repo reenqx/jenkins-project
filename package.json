@@ -1,7 +1,7 @@
 {
-  "name": "my-nct127-app",
+  "name": "my-app",
   "version": "1.0.0",
-  "description": "แอพสุ่มแนะนำเพลงในอัลบั้มของ Mark Lee สำหรับ deploy บน Netlify",
+  "description": "hello",
   "main": "index.js",
   "scripts": {
     "start": "netlify dev"

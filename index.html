@@ -68,6 +68,14 @@
             }
         }
     </style>
+    <script>
+        fetch("/.netlify/functions/app")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("message").textContent = data.message;
+            })
+            .catch(error => console.error("Error calling the function:", error));
+    </script>
 </head>
 <body>
     <div class="container">
