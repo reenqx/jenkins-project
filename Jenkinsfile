@@ -2,66 +2,44 @@ pipeline {
     agent any
 
     environment {
-        NETLIFY_SITE_ID = '43209e1b-2e89-4b47-91a5-92dd21a3c8e7'
-        NETLIFY_AUTH_TOKEN = credentials('token')
+        NETLIFY_SITE_ID = 'nfp_CThpCK2NcZYxVMyH6FWVtemi3mhurqyBb170v'
+        NETLIFY_AUTH_TOKEN = credentials('netlify-tokens')
     }
 
     stages {
         stage('Build') {
-            agent {
-                docker {
-                    image 'node:18-alpine'
-                    reuseNode true
-                }
-            }
             steps {
-                echo "🔍 Verifying required files..."
+                echo "🔍 Checking required files..."
                 sh '''
-                    test -f netlify/functions/app.js || (echo "🚨 app.js is missing!" && exit 1)
-                    test -f netlify/functions/random-song.js || (echo "⚠️ The random song function is missing!" && exit 1)
-                    echo "✅ All necessary files are in place!"
+                    test -f index.html || (echo "🚨 index.html is missing!" && exit 1)
+                    test -f netlify/functions/app.js || (echo "⚠️ app.js is missing!" && exit 1)
+                    echo "✅ All necessary files are available!"
                 '''
             }
         }
 
         stage('Test') {
-            agent {
-                docker {
-                    image 'node:18-alpine'
-                    reuseNode true
-                }
-            }
             steps {
-                echo "🛠️ Running function load test..."
+                echo "🛠️ Running application test..."
                 sh '''
-                    node -e "require('./netlify/functions/app.js'); console.log('🎯 Function loaded successfully!')"
+                    node -e "require('./netlify/functions/app.js'); console.log('🎯 app.js loaded successfully!')"
                 '''
             }
         }
 
         stage('Deploy') {
-            agent {
-                docker {
-                    image 'node:18-alpine'
-                    reuseNode true
-                }
-            }
             steps {
                 echo "🚀 Deploying the project to Netlify..."
                 sh '''
                     npm install netlify-cli
-                    node_modules/.bin/netlify deploy \
-                      --auth=$NETLIFY_AUTH_TOKEN \
-                      --site=$NETLIFY_SITE_ID \
-                      --dir=./ \
-                      --prod
+                    node_modules/.bin/netlify deploy --auth=$NETLIFY_AUTH_TOKEN --site=$NETLIFY_SITE_ID --dir=. --prod
                 '''
             }
         }
 
         stage('Post Deploy') {
             steps {
-                echo "🎉 Deployment is complete! Your website is now live."
+                echo "🎉 Deployment complete! Your website is now live."
             }
         }
     }
@@ -71,7 +49,7 @@ pipeline {
             echo "✅ CI/CD pipeline executed successfully! 🎊"
         }
         failure {
-            echo "❌ An error occurred during the pipeline execution. Please check the logs!"
+            echo "❌ Pipeline failed. Please check the logs!"
         }
     }
 }
