@@ -4,10 +4,14 @@
   "description": "hello",
   "main": "index.js",
   "scripts": {
-    "start": "netlify dev"
+    "start": "netlify dev",
+    "build": "react-scripts build", 
+    "deploy": "netlify deploy" 
   },
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.17.1" 
+  },
   "devDependencies": {
-    "netlify-cli": "^15.0.0"
+    "netlify-cli": "^15.0.0" 
   }
 }

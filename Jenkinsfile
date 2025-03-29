@@ -53,7 +53,6 @@ pipeline {
             --auth=$NETLIFY_AUTH_TOKEN \
             --site=$NETLIFY_SITE_ID \
             --dir=. \
-            --functions=functions \
             --prod
         '''
       }
