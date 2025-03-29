@@ -17,7 +17,7 @@ pipeline {
       steps {
         echo "🔍 ตรวจสอบไฟล์ที่จำเป็นสำหรับการ build..."
         sh '''
-          test -f public/index.html || (echo "🚫 ไม่พบไฟล์ public/index.html!" && exit 1)
+          test -f index.html || (echo "🚫 ไม่พบไฟล์ public/index.html!" && exit 1)
           echo "✅ พร้อมสำหรับขั้นตอน build แล้ว"
         '''
       }
@@ -33,7 +33,7 @@ pipeline {
       steps {
         echo "🧹 กำลังตรวจสอบ syntax ของฟังก์ชัน..."
         sh '''
-          node -e "require('.netlify/functions/app.js'); console.log('📦 โหลดฟังก์ชันได้สำเร็จ')"
+          node -e "require('./functions/randomNCT127.js'); console.log('📦 โหลดฟังก์ชันได้สำเร็จ')"
         '''
       }
     }
@@ -53,6 +53,7 @@ pipeline {
             --auth=$NETLIFY_AUTH_TOKEN \
             --site=$NETLIFY_SITE_ID \
             --dir=. \
+            --functions=functions \
             --prod
         '''
       }
