@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:18-alpine'   // ใช้ Docker image ที่มี Node.js ติดตั้งอยู่แล้ว
+            reuseNode true
+        }
+    }
 
     environment {
         NETLIFY_SITE_ID = '43209e1b-2e89-4b47-91a5-92dd21a3c8e7'
