@@ -1,13 +1,9 @@
 // โหลด Dependencies ที่จำเป็น
 const express = require('express')   // ใช้ Express.js เพื่อสร้าง Web Server
-const helmet = require('helmet')     // ใช้ Helmet เพื่อเพิ่มความปลอดภัยของ HTTP Headers
 const path = require('path');        // 📌 ✅ เพิ่ม path module ที่หายไป!
 
 // สร้างอินสแตนซ์ของ Express.js
 const app = express()
-
-// ใช้ Helmet Middleware เพื่อเพิ่มความปลอดภัย
-app.use(helmet())
 
 // ใช้ Express Static Middleware ให้โหลดไฟล์ในโฟลเดอร์ `public`
 app.use(express.static(path.join(__dirname, 'public')))
