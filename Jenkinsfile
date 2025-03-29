@@ -7,22 +7,16 @@ pipeline {
         NETLIFY_AUTH_TOKEN = credentials('token') // ใช้ token จาก Jenkins credentials
     }
 
-        
-    
     stages {
-        stage('Check Node.js Installation') {
-            steps {
-                echo "🔍 Checking Node.js version..."
-                sh 'node --version || (echo "Node.js is not installed." && exit 1)'
-                sh 'npm --version || (echo "npm is not installed." && exit 1)'
-            }
-        }
+        
+
         // ขั้นตอนการ Build
         stage('Build') {
             steps {
                 echo "🔍 Checking required files..."
-                sh 'npm cache clean --force'
+                sh 'npm cache clean --force'  // ล้าง cache ก่อนทำการติดตั้งใหม่
                 sh 'npm install'  // ติดตั้ง dependencies ทั้งหมด
+                sh 'npm -v'  // ตรวจสอบว่า npm ทำงานได้หรือไม่
                 // ตรวจสอบว่าไฟล์ index.html และ app.js อยู่ในตำแหน่งที่ถูกต้อง
                 sh '''
                     test -f public/index.html || (echo "🚨 index.html is missing!" && exit 1)
