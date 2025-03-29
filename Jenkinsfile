@@ -6,7 +6,7 @@ pipeline {
         NETLIFY_SITE_ID = '43209e1b-2e89-4b47-91a5-92dd21a3c8e7' // ตัวระบุของ Netlify site
         NETLIFY_AUTH_TOKEN = credentials('token') // ใช้ token จาก Jenkins credentials
     }
-    stages {
+
         stage('Check Node.js Installation') {
             steps {
                 echo "🔍 Checking Node.js version..."
@@ -14,7 +14,7 @@ pipeline {
                 sh 'npm --version || (echo "npm is not installed." && exit 1)'
             }
         }
-    }
+    
     stages {
         // ขั้นตอนการ Build
         stage('Build') {
