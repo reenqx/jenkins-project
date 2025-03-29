@@ -62,7 +62,7 @@ pipeline {
                     npx netlify deploy \
                       --auth=$NETLIFY_AUTH_TOKEN \
                       --site=$NETLIFY_SITE_ID \
-                      --dir=public \
+                      --dir=. \
                       --prod
                 '''
             }
