@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        NETLIFY_SITE_ID = 'nfp_LSRMmY9Bc59JcUhkQKnBxX9Gx2hPJ63r2dc4'
+        NETLIFY_SITE_ID = 'nfp_bFy9Z51DDUiTv56j5M8ckciPCfCJojFN19c3'
         NETLIFY_AUTH_TOKEN = credentials('token')
     }
 
