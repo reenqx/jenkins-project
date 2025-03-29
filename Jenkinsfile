@@ -32,7 +32,11 @@ pipeline {
                 echo "🚀 Deploying the project to Netlify..."
                 sh '''
                     npm install netlify-cli
-                    node_modules/.bin/netlify deploy --auth=$NETLIFY_AUTH_TOKEN --site=$NETLIFY_SITE_ID --dir=. --prod
+                    node_modules/.bin/netlify deploy \
+                     --auth=$NETLIFY_AUTH_TOKEN \
+                     --site=$NETLIFY_SITE_ID \
+                     --dir=. \
+                     --prod
                 '''
             }
         }
