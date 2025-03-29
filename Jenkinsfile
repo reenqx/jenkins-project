@@ -21,7 +21,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo "🔍 Checking required files..."
-                sh'npm cache clean --force'
+                sh 'npm cache clean --force'
                 sh 'npm install'  // ติดตั้ง dependencies ทั้งหมด
                 // ตรวจสอบว่าไฟล์ index.html และ app.js อยู่ในตำแหน่งที่ถูกต้อง
                 sh '''
