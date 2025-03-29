@@ -11,7 +11,7 @@ pipeline {
             steps {
                 echo "🔍 Checking required files..."
                 sh '''
-                    test -f index.html || (echo "🚨 index.html is missing!" && exit 1)
+                    test -f public/index.html || (echo "🚨 index.html is missing!" && exit 1)
                     test -f netlify/functions/app.js || (echo "⚠️ app.js is missing!" && exit 1)
                     echo "✅ All necessary files are available!"
                 '''
