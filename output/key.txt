@@ -1,3 +1,3 @@
-NETLIFY_SITE_ID = '7c9b7a0b-6431-443e-8fe1-307640aaf38b'
-NETLIFY_AUTH_TOKEN = credentials('netlifyToken')
+NETLIFY_SITE_ID = '43209e1b-2e89-4b47-91a5-92dd21a3c8e7'
+NETLIFY_AUTH_TOKEN = credentials('nfp_bFy9Z51DDUiTv56j5M8ckciPCfCJojFN19c3')
  

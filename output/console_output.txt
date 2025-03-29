@@ -1,8 +1,8 @@
-Started by user Pasagone Suwan
-Obtained Jenkinsfile from git https://github.com/SEONMEEN/learn-jenkins-app.git
+Started by user Nurin Khankaew
+Obtained Jenkinsfile from git https://github.com/reenqx/jenkins-project.git
 [Pipeline] Start of Pipeline
 [Pipeline] node
-Running on Jenkins in /var/jenkins_home/workspace/netlify
+Running on Jenkins in /var/jenkins_home/workspace/project-jenkins
 [Pipeline] {
 [Pipeline] stage
 [Pipeline] { (Declarative: Checkout SCM)
@@ -10,19 +10,19 @@ Running on Jenkins in /var/jenkins_home/workspace/netlify
 Selected Git installation does not exist. Using Default
 The recommended git tool is: NONE
 No credentials specified
- > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/netlify/.git # timeout=10
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/project-jenkins/.git # timeout=10
 Fetching changes from the remote Git repository
- > git config remote.origin.url https://github.com/SEONMEEN/learn-jenkins-app.git # timeout=10
-Fetching upstream changes from https://github.com/SEONMEEN/learn-jenkins-app.git
+ > git config remote.origin.url https://github.com/reenqx/jenkins-project.git # timeout=10
+Fetching upstream changes from https://github.com/reenqx/jenkins-project.git
  > git --version # timeout=10
  > git --version # 'git version 2.39.5'
- > git fetch --tags --force --progress -- https://github.com/SEONMEEN/learn-jenkins-app.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git fetch --tags --force --progress -- https://github.com/reenqx/jenkins-project.git +refs/heads/*:refs/remotes/origin/* # timeout=10
  > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
-Checking out Revision 91e43f03079f6d5747434a7f8c42dc0eff5b8ee6 (refs/remotes/origin/main)
+Checking out Revision f2c2047e1afec52f6362e4a31648de930a60608c (refs/remotes/origin/main)
  > git config core.sparsecheckout # timeout=10
- > git checkout -f 91e43f03079f6d5747434a7f8c42dc0eff5b8ee6 # timeout=10
-Commit message: "addoutput"
- > git rev-list --no-walk 4e96dac188d692babdeadf9365e6d90a0e90bbc6 # timeout=10
+ > git checkout -f f2c2047e1afec52f6362e4a31648de930a60608c # timeout=10
+Commit message: "55"
+ > git rev-list --no-walk 5fe41c341f1f23429b4e08bd71becca10a4cd54d # timeout=10
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] withEnv
@@ -32,6 +32,26 @@ Masking supported pattern matches of $NETLIFY_AUTH_TOKEN
 [Pipeline] {
 [Pipeline] withEnv
 [Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/project-jenkins/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/reenqx/jenkins-project.git # timeout=10
+Fetching upstream changes from https://github.com/reenqx/jenkins-project.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.39.5'
+ > git fetch --tags --force --progress -- https://github.com/reenqx/jenkins-project.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision f2c2047e1afec52f6362e4a31648de930a60608c (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f f2c2047e1afec52f6362e4a31648de930a60608c # timeout=10
+Commit message: "55"
+[Pipeline] }
+[Pipeline] // stage
 [Pipeline] stage
 [Pipeline] { (Build)
 [Pipeline] getContext
@@ -44,22 +64,22 @@ Masking supported pattern matches of $NETLIFY_AUTH_TOKEN
 [Pipeline] }
 [Pipeline] // withEnv
 [Pipeline] withDockerContainer
-Jenkins seems to be running inside container 848feef314ba6f6741419d5d7f865d1e9a763aef73c17d0327e56fe70f14b978
-but /var/jenkins_home/workspace/netlify could not be found among []
-but /var/jenkins_home/workspace/netlify@tmp could not be found among []
-$ docker run -t -d -u 1000:1000 -w /var/jenkins_home/workspace/netlify -v /var/jenkins_home/workspace/netlify:/var/jenkins_home/workspace/netlify:rw,z -v /var/jenkins_home/workspace/netlify@tmp:/var/jenkins_home/workspace/netlify@tmp:rw,z -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** node:18-alpine cat
-$ docker top 123bb5ece8a9ed6284aebd466eb4cdcc4e8106310b1b47f1a39a0842721a23ac -eo pid,comm
+Jenkins seems to be running inside container 2c252300edce829ca299f2f9d42bc7a7471cfd18b712333acf6c5d13ba336364
+but /var/jenkins_home/workspace/project-jenkins could not be found among []
+but /var/jenkins_home/workspace/project-jenkins@tmp could not be found among []
+$ docker run -t -d -u 1000:1000 -w /var/jenkins_home/workspace/project-jenkins -v /var/jenkins_home/workspace/project-jenkins:/var/jenkins_home/workspace/project-jenkins:rw,z -v /var/jenkins_home/workspace/project-jenkins@tmp:/var/jenkins_home/workspace/project-jenkins@tmp:rw,z -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** node:18-alpine cat
+$ docker top 891b4476675b35d02a87a867818ab82ca14fe32a584a0ba55a52c3fe8a43d373 -eo pid,comm
 [Pipeline] {
 [Pipeline] echo
-🔍 Verifying required files...
+🔧 Checking required files...
 [Pipeline] sh
 + test -f index.html
-+ test -f netlify/functions/random-song.js
-+ echo '✅ All necessary files are in place!'
-✅ All necessary files are in place!
++ test -f netlify/functions/app.js
++ echo '✅ Build check passed.'
+✅ Build check passed.
 [Pipeline] }
-$ docker stop --time=1 123bb5ece8a9ed6284aebd466eb4cdcc4e8106310b1b47f1a39a0842721a23ac
-$ docker rm -f --volumes 123bb5ece8a9ed6284aebd466eb4cdcc4e8106310b1b47f1a39a0842721a23ac
+$ docker stop --time=1 891b4476675b35d02a87a867818ab82ca14fe32a584a0ba55a52c3fe8a43d373
+$ docker rm -f --volumes 891b4476675b35d02a87a867818ab82ca14fe32a584a0ba55a52c3fe8a43d373
 [Pipeline] // withDockerContainer
 [Pipeline] }
 [Pipeline] // stage
@@ -75,20 +95,25 @@ $ docker rm -f --volumes 123bb5ece8a9ed6284aebd466eb4cdcc4e8106310b1b47f1a39a084
 [Pipeline] }
 [Pipeline] // withEnv
 [Pipeline] withDockerContainer
-Jenkins seems to be running inside container 848feef314ba6f6741419d5d7f865d1e9a763aef73c17d0327e56fe70f14b978
-but /var/jenkins_home/workspace/netlify could not be found among []
-but /var/jenkins_home/workspace/netlify@tmp could not be found among []
-$ docker run -t -d -u 1000:1000 -w /var/jenkins_home/workspace/netlify -v /var/jenkins_home/workspace/netlify:/var/jenkins_home/workspace/netlify:rw,z -v /var/jenkins_home/workspace/netlify@tmp:/var/jenkins_home/workspace/netlify@tmp:rw,z -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** node:18-alpine cat
-$ docker top e158feb5181322d4d5fda7a76e1aaa23c20dc9020315ecfa8522805f9382aa0d -eo pid,comm
+Jenkins seems to be running inside container 2c252300edce829ca299f2f9d42bc7a7471cfd18b712333acf6c5d13ba336364
+but /var/jenkins_home/workspace/project-jenkins could not be found among []
+but /var/jenkins_home/workspace/project-jenkins@tmp could not be found among []
+$ docker run -t -d -u 1000:1000 -w /var/jenkins_home/workspace/project-jenkins -v /var/jenkins_home/workspace/project-jenkins:/var/jenkins_home/workspace/project-jenkins:rw,z -v /var/jenkins_home/workspace/project-jenkins@tmp:/var/jenkins_home/workspace/project-jenkins@tmp:rw,z -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** node:18-alpine cat
+$ docker top 735f139c24c4fcfc6828f09e3d4fc2702f3caeb4033cb22f577adbd0bf839872 -eo pid,comm
 [Pipeline] {
 [Pipeline] echo
-🛠️ Running function load test...
+Hello page load...
 [Pipeline] sh
-+ node -e 'require('"'"'./netlify/functions/random-song.js'"'"'); console.log('"'"'🎯 Function loaded successfully!'"'"')'
-🎯 Function loaded successfully!
++ npm install uuid
+
+removed 1597 packages, and audited 2 packages in 7s
+
+found 0 vulnerabilities
++ node -e 'require('"'"'./netlify/functions/app.js'"'"'); console.log('"'"'✅ Script function loaded successfully'"'"')'
+✅ Script function loaded successfully
 [Pipeline] }
-$ docker stop --time=1 e158feb5181322d4d5fda7a76e1aaa23c20dc9020315ecfa8522805f9382aa0d
-$ docker rm -f --volumes e158feb5181322d4d5fda7a76e1aaa23c20dc9020315ecfa8522805f9382aa0d
+$ docker stop --time=1 735f139c24c4fcfc6828f09e3d4fc2702f3caeb4033cb22f577adbd0bf839872
+$ docker rm -f --volumes 735f139c24c4fcfc6828f09e3d4fc2702f3caeb4033cb22f577adbd0bf839872
 [Pipeline] // withDockerContainer
 [Pipeline] }
 [Pipeline] // stage
@@ -104,95 +129,98 @@ $ docker rm -f --volumes e158feb5181322d4d5fda7a76e1aaa23c20dc9020315ecfa8522805
 [Pipeline] }
 [Pipeline] // withEnv
 [Pipeline] withDockerContainer
-Jenkins seems to be running inside container 848feef314ba6f6741419d5d7f865d1e9a763aef73c17d0327e56fe70f14b978
-but /var/jenkins_home/workspace/netlify could not be found among []
-but /var/jenkins_home/workspace/netlify@tmp could not be found among []
-$ docker run -t -d -u 1000:1000 -w /var/jenkins_home/workspace/netlify -v /var/jenkins_home/workspace/netlify:/var/jenkins_home/workspace/netlify:rw,z -v /var/jenkins_home/workspace/netlify@tmp:/var/jenkins_home/workspace/netlify@tmp:rw,z -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** node:18-alpine cat
-$ docker top 44260373f0f238a7ad1cc0c72e5124faa3246dbb2d24aef1f6aeb19791b5fa5a -eo pid,comm
+Jenkins seems to be running inside container 2c252300edce829ca299f2f9d42bc7a7471cfd18b712333acf6c5d13ba336364
+but /var/jenkins_home/workspace/project-jenkins could not be found among []
+but /var/jenkins_home/workspace/project-jenkins@tmp could not be found among []
+$ docker run -t -d -u 1000:1000 -w /var/jenkins_home/workspace/project-jenkins -v /var/jenkins_home/workspace/project-jenkins:/var/jenkins_home/workspace/project-jenkins:rw,z -v /var/jenkins_home/workspace/project-jenkins@tmp:/var/jenkins_home/workspace/project-jenkins@tmp:rw,z -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** node:18-alpine cat
+$ docker top edd46593bd94a88b01bffa3f57affc20a56a647f902910ede436a3b269f8c78a -eo pid,comm
 [Pipeline] {
 [Pipeline] echo
-🚀 Deploying the project to Netlify...
+🚀 Deploying to Netlify...
 [Pipeline] sh
 + npm install netlify-cli
+npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated npmlog@5.0.1: This package is no longer supported.
+npm warn deprecated gauge@3.0.2: This package is no longer supported.
+npm warn deprecated are-we-there-yet@2.0.0: This package is no longer supported.
+npm warn deprecated glob@8.1.0: Glob versions prior to v9 are no longer supported
 
-changed 1 package, and audited 2764 packages in 16s
+added 1596 packages, and audited 1601 packages in 1m
 
-458 packages are looking for funding
+250 packages are looking for funding
   run `npm fund` for details
 
-40 vulnerabilities (3 low, 22 moderate, 15 high)
+8 moderate severity vulnerabilities
 
-To address issues that do not require attention, run:
+To address all issues, run:
   npm audit fix
 
-To address all issues (including breaking changes), run:
-  npm audit fix --force
-
 Run `npm audit` for details.
-+ node_modules/.bin/netlify deploy '--auth=****' '--site=7c9b7a0b-6431-443e-8fe1-307640aaf38b' '--dir=.' --prod
-Deploy path:    /var/jenkins_home/workspace/netlify
-Functions path: /var/jenkins_home/workspace/netlify/netlify/functions
++ npx netlify deploy '--auth=****' '--site=43209e1b-2e89-4b47-91a5-92dd21a3c8e7' '--dir=.' --prod
+Deploy path:        /var/jenkins_home/workspace/project-jenkins
+Functions path:     /var/jenkins_home/workspace/project-jenkins/netlify/functions
+Configuration path: /var/jenkins_home/workspace/project-jenkins/netlify.toml
 Deploying to main site URL...
-- Uploading blobs to deploy store...
+[33m⠋[39m Uploading blobs to deploy store...
 
 ​
 Netlify Build                                                 
 ────────────────────────────────────────────────────────────────
 ​
 ❯ Version
-  @netlify/build 29.58.0
+  @netlify/build 30.0.6
 ​
 ❯ Flags
   auth: ****
-  deployId: 67e69a5ff0cbdc1b09d74b2a
+  deployId: 67e7bc5034bb82f1696fe32f
   dir: .
   open: false
   prod: true
   prodIfUnlocked: false
-  site: 7c9b7a0b-6431-443e-8fe1-307640aaf38b
+  site: 43209e1b-2e89-4b47-91a5-92dd21a3c8e7
   skipFunctionsCache: false
 ​
 ❯ Current directory
-  /var/jenkins_home/workspace/netlify
+  /var/jenkins_home/workspace/project-jenkins
 ​
 ❯ Config file
-  No config file was defined: using default values.
+  /var/jenkins_home/workspace/project-jenkins/netlify.toml
 ​
 ❯ Context
   dev
-✔ Finished uploading blobs to deploy store
-- Hashing files...
-- Looking for a functions cache...
-✔ No cached functions were found
-✔ Finished hashing 26 files and 1 functions
-- CDN diffing files...
-✔ CDN requesting 1 files and 0 functions
-- Uploading 1 files
-✔ Finished uploading 1 assets
-- Waiting for deploy to go live...
-✔ Deploy is live!
+[33m⠙[39m Finished uploading blobs to deploy store
+[33m⠋[39m Hashing files...
+[33m⠋[39m Looking for a functions cache...
+[33m⠙[39m No cached functions were found
+[33m⠙[39m Finished hashing 13 files and 1 functions
+[33m⠋[39m CDN diffing files...
+[33m⠙[39m CDN requesting 7 files and 1 functions
+[33m⠋[39m Uploading 8 files
+[33m⠙[39m Finished uploading 8 assets
+[33m⠋[39m Waiting for deploy to go live...
+[33m⠙[39m Deploy is live!
 
-Build logs:         https://app.netlify.com/sites/zingy-fudge-46135b/deploys/67e69a5ff0cbdc1b09d74b2a
-Function logs:      https://app.netlify.com/sites/zingy-fudge-46135b/logs/functions
-Edge function Logs: https://app.netlify.com/sites/zingy-fudge-46135b/logs/edge-functions
-Unique deploy URL:  https://67e69a5ff0cbdc1b09d74b2a--zingy-fudge-46135b.netlify.app
-Website URL:        https://zingy-fudge-46135b.netlify.app
+Build logs:         https://app.netlify.com/sites/famous-ganache-6e6a64/deploys/67e7bc5034bb82f1696fe32f
+Function logs:      https://app.netlify.com/sites/famous-ganache-6e6a64/logs/functions
+Edge function Logs: https://app.netlify.com/sites/famous-ganache-6e6a64/logs/edge-functions
+Unique deploy URL:  https://67e7bc5034bb82f1696fe32f--famous-ganache-6e6a64.netlify.app
+Website URL:        https://famous-ganache-6e6a64.netlify.app
 [Pipeline] }
-$ docker stop --time=1 44260373f0f238a7ad1cc0c72e5124faa3246dbb2d24aef1f6aeb19791b5fa5a
-$ docker rm -f --volumes 44260373f0f238a7ad1cc0c72e5124faa3246dbb2d24aef1f6aeb19791b5fa5a
+$ docker stop --time=1 edd46593bd94a88b01bffa3f57affc20a56a647f902910ede436a3b269f8c78a
+$ docker rm -f --volumes edd46593bd94a88b01bffa3f57affc20a56a647f902910ede436a3b269f8c78a
 [Pipeline] // withDockerContainer
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] stage
 [Pipeline] { (Post Deploy)
 [Pipeline] echo
-🎉 Deployment is complete! Your website is now live.
+✅ Deployment complete! Hello Page.
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] stage
 [Pipeline] { (Declarative: Post Actions)
 [Pipeline] echo
-✅ CI/CD pipeline executed successfully! 🎊
+🎉 CI/CD pipeline finished successfully.
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] }
