@@ -2,16 +2,18 @@
   "name": "my-app",
   "version": "1.0.0",
   "description": "hello",
-  "main": "index.js",
-  "scripts": {
-    "start": "netlify dev",
+  "main": "app.js",   "scripts": {
+    "start": "react-scripts start", 
     "build": "react-scripts build", 
-    "deploy": "netlify deploy" 
+    "deploy": "netlify deploy",  
+    "dev": "netlify dev"         
   },
   "dependencies": {
-    "express": "^4.17.1" 
+    "express": "^4.17.1",        
+    "react": "^18.2.0",          
+    "react-dom": "^18.2.0"      
   },
   "devDependencies": {
-    "netlify-cli": "^15.0.0" 
+    "netlify-cli": "^15.0.0"       
   }
 }
