@@ -7,6 +7,9 @@ pipeline {
         NETLIFY_AUTH_TOKEN = credentials('token') // ใช้ token จาก Jenkins credentials
     }
 
+        
+    
+    stages {
         stage('Check Node.js Installation') {
             steps {
                 echo "🔍 Checking Node.js version..."
@@ -14,8 +17,6 @@ pipeline {
                 sh 'npm --version || (echo "npm is not installed." && exit 1)'
             }
         }
-    
-    stages {
         // ขั้นตอนการ Build
         stage('Build') {
             steps {
